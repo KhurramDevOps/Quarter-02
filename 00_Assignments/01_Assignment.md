@@ -136,4 +136,4 @@ Here’s an explanation of the parameters used in the OpenAI Chat Completion API
 
 ---
 
-Each of these parameters gives you control over how the AI behaves, helping you customize its performance for different applications.
+Each of these parameters gives you control over how the AI behaves, helping you customize its performance for different applications. By adjusting these parameters, you can fine-tune the AI’s responses to better suit your needs.
