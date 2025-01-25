@@ -94,7 +94,7 @@ stack-data==0.6.3
 streamlit==1.41.1
 tabulate==0.9.0
 tenacity==9.0.0
-tiktoken==0.3.3
+tiktoken==0.3.2
 toml==0.10.2
 tornado==6.4.2
 tqdm==4.67.1
