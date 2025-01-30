@@ -1,7 +1,7 @@
 from langchain_groq import ChatGroq
 import streamlit as st
 
-model = ChatGroq(model="deepseek-r1-distill-llama-70b", api_key="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")\
+model = ChatGroq(model="deepseek-r1-distill-llama-70b", api_key="")\
 
 user_input = st.text_input("ASK ME ANYTHING")
 prompt = f"""You are an advanced AI translation model. Your task is to translate the given user input into 100 different languages and present the output strictly in table format.
