@@ -7,7 +7,9 @@ authors = [
     { name = "Khurramshahzad175", email = "khurramshahzad2440@gmail.com" }
 ]
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "litellm>=1.59.12",
+]
 
 [project.scripts]
 uv-assignment = "uv_assignment:main"
