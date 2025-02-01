@@ -14,6 +14,7 @@ dependencies = [
 [project.scripts]
 uv-assignment = "uv_assignment:main"
 greet = "uv_assignment.hello:hello"
+gem = "uv_assignment.gemini:llm"
 
 [build-system]
 requires = ["hatchling"]
