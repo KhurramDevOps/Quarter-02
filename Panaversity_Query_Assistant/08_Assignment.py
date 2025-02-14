@@ -3,7 +3,7 @@ from langchain_community.document_loaders import PyPDFLoader
 from langchain_google_genai import ChatGoogleGenerativeAI
 
 # Load the document
-loader = PyPDFLoader("document.pdf")
+loader = PyPDFLoader("Panaversity_Query_Assistant/document.pdf")
 doc = loader.load()
 
 # Initialize the LLM
