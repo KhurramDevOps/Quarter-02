@@ -16,24 +16,29 @@ SYSTEM_PROMPT = """You are a helpful weather assistant that provides accurate, u
 - If a user asks about topics that are not weather-related, respond with a message such as: 'I'm sorry, but I can only provide weather information. Please ask me about the weather.' Always maintain a friendly, concise, and informative tone in your responses.
 """
 
-# App title and description
-st.title("Weather Forecast Assistant")
-st.write("Enter a City or Country name below to receive the current weather forecast.")
 
-# User input for city/country name
-user_input = st.text_input("City/Country Name", placeholder="e.g., New York or France")
+st.title("🌤️ Weather Forecast Assistant ")
+st.markdown(
+    """
+    - **Enter a City or Country name below to receive the current weather forecast!**  \n
+    - Whether you’re planning your day or a weekend getaway, get up-to-date weather details instantly.  
+    🌍🏙️
+    """
+)
 
-# When the user clicks the button, process the input
-if st.button("Get Weather"):
+# User input for city/country name with an attractive placeholder
+user_input = st.text_input("City/Country Name", placeholder="e.g., New York, USA or Paris, France 🌆")
+
+
+if st.button("🔍 Get Weather"):
     if user_input:
-        # Combine the system prompt with the user's input
+
         full_prompt = f"{SYSTEM_PROMPT}\n\nUser Input: {user_input}"
-        
-        # Get the response from MetaAI
+
         response = LLM.prompt(full_prompt)
         
-        # Display the response message
-        st.subheader("Weather Forecast:")
+
+        st.subheader("📡 Weather Forecast:")
         st.write(response.get("message", "No response received."))
     else:
-        st.error("Please enter a valid City or Country name.")
+        st.error("❌ Please enter a valid City or Country name.")
