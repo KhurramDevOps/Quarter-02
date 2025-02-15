@@ -1,13 +1,16 @@
 import streamlit as st
 import requests
 from langchain_google_genai import GoogleGenerativeAI
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
 # Set your API keys
-WEATHER_API_KEY = "e472e9e4cfc93670c3cb249f26576ad9"  # Replace with your actual OpenWeatherMap API key
-GEMINI_API_KEY = "AIzaSyAkcbY4zaoZ5ftLEkRVoWEjmWgdx9Kxcmo"  # Replace with your actual Gemini API key
+WEATHER_API_KEY = os.getenv("WEATHER_API_KEY")  # Replace with your actual OpenWeatherMap API key
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")  # Replace with your actual Gemini API key
 
 # Initialize Google Generative AI
-llm = GoogleGenerativeAI(model="gemini-pro", google_api_key=GEMINI_API_KEY)
+llm = GoogleGenerativeAI(model="gemini-2.0-flash-exp", google_api_key=GEMINI_API_KEY)
 
 # Initialize the Weather API Function
 def get_weather(city: str) -> str:
