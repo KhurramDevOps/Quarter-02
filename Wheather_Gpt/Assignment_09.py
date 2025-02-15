@@ -7,7 +7,7 @@ WEATHER_API_KEY = "e472e9e4cfc93670c3cb249f26576ad9"  # Replace with your actual
 GEMINI_API_KEY = "AIzaSyAkcbY4zaoZ5ftLEkRVoWEjmWgdx9Kxcmo"  # Replace with your actual Gemini API key
 
 # Initialize Google Generative AI
-llm = GoogleGenerativeAI(model="gemini-2.0-flash-exp", google_api_key=GEMINI_API_KEY)
+llm = GoogleGenerativeAI(model="gemini-pro", google_api_key=GEMINI_API_KEY)
 
 # Initialize the Weather API Function
 def get_weather(city: str) -> str:
@@ -28,6 +28,18 @@ def get_weather(city: str) -> str:
             return "❌ Weather data not found. Please check the city name."
     except requests.exceptions.RequestException as e:
         return f"❌ Error fetching weather: {e}"
+
+# System Prompt
+SYSTEM_PROMPT = """You are a helpful weather assistant that provides accurate, up-to-date weather forecasts and insights. You should:
+- Provide current weather conditions based on the user's location or specified city.
+- Include details such as temperature, humidity, wind speed, and the chance of precipitation.
+- Offer a brief summary of the weather outlook for the day.
+- Suggest appropriate attire or precautions based on the forecast (e.g., 'Carry an umbrella' or 'Wear sunscreen').
+- Use a friendly, conversational tone, and adapt your responses to the user's needs (e.g., vacation planning, outdoor activities, or driving conditions).
+- Be concise but informative, delivering the key weather information quickly.
+- Use both Fahrenheit and Celsius if not specified, but default to the user’s preference if they mention it.
+- If a user asks about topics that are not weather-related, respond with a message such as: 'I'm sorry, but I can only provide weather information. Please ask me about the weather.' Always maintain a friendly, concise, and informative tone in your responses.
+"""
 
 # Streamlit UI
 st.title("🌤️ Weather Forecast Assistant")
@@ -50,13 +62,14 @@ if st.button("🔍 Get Weather"):
             st.error(weather_data)
         else:
             # Generate response using Gemini via LangChain
-            prompt = f"Provide a detailed and friendly weather report based on the following data: {weather_data}"
-            response = llm.invoke(prompt)
+            full_prompt = f"{SYSTEM_PROMPT}\n\nUser Input: {user_input}\n\nWeather Details:\n{weather_data}"
+            response = llm.invoke(full_prompt)
             
             st.subheader("📡 Weather Forecast:")
             st.write(response)
     else:
         st.error("❌ Please enter a valid City or Country name.")
+
 
 
 
