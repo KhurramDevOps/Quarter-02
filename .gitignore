@@ -1,6 +1,5 @@
 .venv
 myvenv
-**/__pycache__/ # ignore all pycacge foo
-lders
+**/__pycache__/ # ignore all pycache folders
 .env
 venv
